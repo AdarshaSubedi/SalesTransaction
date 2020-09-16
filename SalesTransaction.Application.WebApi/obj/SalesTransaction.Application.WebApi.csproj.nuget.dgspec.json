@@ -224,9 +224,6 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "F:\\AqoreProject\\SalesTransaction\\SalesTransaction.Application.DataAccess\\SalesTransaction.Application.DataAccess.csproj": {
-                "projectPath": "F:\\AqoreProject\\SalesTransaction\\SalesTransaction.Application.DataAccess\\SalesTransaction.Application.DataAccess.csproj"
-              },
               "F:\\AqoreProject\\SalesTransaction\\SalesTransaction.Application.Model\\SalesTransaction.Application.Model.csproj": {
                 "projectPath": "F:\\AqoreProject\\SalesTransaction\\SalesTransaction.Application.Model\\SalesTransaction.Application.Model.csproj"
               },

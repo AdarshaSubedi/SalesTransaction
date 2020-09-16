@@ -2,3 +2,4 @@ F:\AqoreProject\SalesTransaction\SalesTransaction.Application.Model\bin\Debug\ne
 F:\AqoreProject\SalesTransaction\SalesTransaction.Application.Model\obj\Debug\netcoreapp3.1\SalesTransaction.Application.Model.csprojAssemblyReference.cache
 F:\AqoreProject\SalesTransaction\SalesTransaction.Application.Model\obj\Debug\netcoreapp3.1\SalesTransaction.Application.Model.AssemblyInfoInputs.cache
 F:\AqoreProject\SalesTransaction\SalesTransaction.Application.Model\obj\Debug\netcoreapp3.1\SalesTransaction.Application.Model.AssemblyInfo.cs
+F:\AqoreProject\SalesTransaction\SalesTransaction.Application.Model\obj\Debug\netcoreapp3.1\SalesTransaction.Application.Model.csproj.CoreCompileInputs.cache

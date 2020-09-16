@@ -2,7 +2,7 @@
 
 namespace SalesTransaction.Application.Service.Account
 {
-    interface IAccountService
+    public interface IAccountService
     {
         dynamic GetLogin(MvLogin login);
         dynamic GetUserDetail(string json);

@@ -5090,7 +5090,6 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "Microsoft.Data.SqlClient >= 2.0.1",
-      "SalesTransaction.Application.DataAccess >= 1.0.0",
       "SalesTransaction.Application.Model >= 1.0.0",
       "SalesTransaction.Application.Service >= 1.0.0"
     ]
@@ -5121,9 +5120,6 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "F:\\AqoreProject\\SalesTransaction\\SalesTransaction.Application.DataAccess\\SalesTransaction.Application.DataAccess.csproj": {
-              "projectPath": "F:\\AqoreProject\\SalesTransaction\\SalesTransaction.Application.DataAccess\\SalesTransaction.Application.DataAccess.csproj"
-            },
             "F:\\AqoreProject\\SalesTransaction\\SalesTransaction.Application.Model\\SalesTransaction.Application.Model.csproj": {
               "projectPath": "F:\\AqoreProject\\SalesTransaction\\SalesTransaction.Application.Model\\SalesTransaction.Application.Model.csproj"
             },
