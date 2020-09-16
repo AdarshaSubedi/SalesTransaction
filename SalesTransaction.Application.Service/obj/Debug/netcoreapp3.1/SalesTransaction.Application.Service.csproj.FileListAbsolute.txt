@@ -42,3 +42,6 @@ F:\AqoreProject\SalesTransaction\SalesTransaction.Application.Service\bin\Debug\
 F:\AqoreProject\SalesTransaction\SalesTransaction.Application.Service\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 F:\AqoreProject\SalesTransaction\SalesTransaction.Application.Service\bin\Debug\netcoreapp3.1\SalesTransaction.Application.DataAccess.dll
 F:\AqoreProject\SalesTransaction\SalesTransaction.Application.Service\bin\Debug\netcoreapp3.1\SalesTransaction.Application.Model.dll
+F:\AqoreProject\SalesTransaction\SalesTransaction.Application.Service\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.dll
+F:\AqoreProject\SalesTransaction\SalesTransaction.Application.Service\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
+F:\AqoreProject\SalesTransaction\SalesTransaction.Application.Service\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll

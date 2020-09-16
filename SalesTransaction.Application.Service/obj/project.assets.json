@@ -5069,6 +5069,7 @@
     ".NETCoreApp,Version=v3.1": [
       "Microsoft.Data.SqlClient >= 2.0.1",
       "Microsoft.Extensions.Configuration >= 3.1.8",
+      "Newtonsoft.Json >= 12.0.3",
       "SalesTransaction.Application.DataAccess >= 1.0.0",
       "SalesTransaction.Application.Model >= 1.0.0"
     ]
@@ -5124,6 +5125,10 @@
           "Microsoft.Extensions.Configuration": {
             "target": "Package",
             "version": "[3.1.8, )"
+          },
+          "Newtonsoft.Json": {
+            "target": "Package",
+            "version": "[12.0.3, )"
           }
         },
         "imports": [

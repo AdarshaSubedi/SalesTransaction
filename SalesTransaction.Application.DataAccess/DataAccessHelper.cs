@@ -44,5 +44,20 @@ namespace SalesTransaction.Application.DataAccess.Account
             }
         }
 
+        public dynamic GetJson(SqlDataReader reader)
+        {
+            var dataTable = new DataTable();
+            dataTable.Load(reader);
+
+            if (dataTable.Rows[0] != null && dataTable.Rows[0]["Json"].ToString() != "")
+            {
+                return JsonConvert.DeserializeObject(dataTable.Rows[0]["Json"].ToString());
+            }
+            else
+            {
+                return null;
+            }
+        }
+
     }
 }
