@@ -5,4 +5,13 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="2.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SalesTransaction.Application.DataAccess\SalesTransaction.Application.DataAccess.csproj" />
+    <ProjectReference Include="..\SalesTransaction.Application.Model\SalesTransaction.Application.Model.csproj" />
+  </ItemGroup>
+
 </Project>

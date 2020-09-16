@@ -1,0 +1,4 @@
+F:\AqoreProject\SalesTransaction\SalesTransaction.Application.Service\bin\Debug\netcoreapp3.1\SalesTransaction.Application.Service.exe
+F:\AqoreProject\SalesTransaction\SalesTransaction.Application.Service\obj\Debug\netcoreapp3.1\SalesTransaction.Application.Service.csprojAssemblyReference.cache
+F:\AqoreProject\SalesTransaction\SalesTransaction.Application.Service\obj\Debug\netcoreapp3.1\SalesTransaction.Application.Service.AssemblyInfoInputs.cache
+F:\AqoreProject\SalesTransaction\SalesTransaction.Application.Service\obj\Debug\netcoreapp3.1\SalesTransaction.Application.Service.AssemblyInfo.cs
