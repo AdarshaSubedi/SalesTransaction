@@ -27,7 +27,7 @@ namespace SalesTransaction.Application.WebApi.Areas.Account
             }
             catch (Exception e)
             {
-                throw;
+                throw e;
             }
         }
 
@@ -41,7 +41,7 @@ namespace SalesTransaction.Application.WebApi.Areas.Account
             }
             catch (Exception e)
             {
-                throw;
+                throw e;
             }
         }
     }
