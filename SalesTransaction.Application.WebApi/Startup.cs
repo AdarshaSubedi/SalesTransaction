@@ -26,8 +26,13 @@ namespace SalesTransaction.Application.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvcCore().AddNewtonsoftJson();
             services.AddControllers();
-            services.AddCors();
+            services.AddCors(o => o.AddPolicy("AllowOrigin", builder =>
+            {
+                builder.WithOrigins("http://localhost:51843", "http://localhost:51850")
+                       .WithMethods("{POST}", "GET");
+            }));
             services.AddTransient<IAccountService, AccountService>();
         }
 
@@ -42,7 +47,7 @@ namespace SalesTransaction.Application.WebApi
 
             app.UseRouting();
 
-            app.UseCors(a => a.SetIsOriginAllowed(x => _ = true).AllowAnyMethod().AllowAnyHeader().AllowCredentials());
+            app.UseCors();
 
             app.UseAuthorization();
 
