@@ -11,5 +11,6 @@ namespace SalesTransaction.Application.WebApi.Areas.Base
     [EnableCors("AllowOrigin"), Route("api/[controller]/[action]/{id?}")]
     public class BaseController : Controller
     {
+
     }
 }

@@ -1,7 +1,6 @@
-﻿using SalesTransaction.Application.Service.Account;
+﻿//using SalesTransaction.Application.Service.Account;
 using System;
 using System.Data;
-using System.Linq;
 using System.Data.SqlClient;
 using SalesTransaction.Application.DataAccess.Account;
 using SalesTransaction.Application.Model.Account;
@@ -10,7 +9,7 @@ using Newtonsoft.Json;
 
 namespace SalesTransaction.Application.Service.Account
 {
-    class AccountService : IAccountService
+    public class AccountService : IAccountService
     {
         private DataAccessHelper _dataAccess;
         private readonly string _connectionString;
