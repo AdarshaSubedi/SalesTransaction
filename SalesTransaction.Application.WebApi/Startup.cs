@@ -30,7 +30,7 @@ namespace SalesTransaction.Application.WebApi
             services.AddControllers();
             services.AddCors(o => o.AddPolicy("AllowOrigin", builder =>
             {
-                builder.WithOrigins("http://localhost:51843", "http://localhost:51850")
+                builder.WithOrigins("http://localhost:51843", "http://localhost:51850", "http://localhost:4200")
                        .WithMethods("{POST}", "GET");
             }));
             services.AddTransient<IAccountService, AccountService>();
