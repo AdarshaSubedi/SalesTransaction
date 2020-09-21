@@ -8,14 +8,23 @@ import { Observable } from 'rxjs';
 export class LoginService {
 
   apiUrl = 'https://localhost:44379/api';
-  // headers = new HttpHeaders();
 
   constructor(private httpClient: HttpClient) {
-    // this.headers.set('Access-Control-Allow-Origin', '*');
   }
 
   getLogin(json): Observable<any>{
-    return this.httpClient.post<any>(this.apiUrl + '/account/login', JSON.stringify(json));
+    return this.httpClient.post<any>(this.apiUrl + '/account/login', json, {headers: this.getHeaderOptions()});
+  }
+
+  getHeaderOptions(): HttpHeaders {
+
+    const headers = new HttpHeaders();
+    headers.set('Content-Type', 'application/json');
+    headers.set('Access-Control-Allow-Origin', '*');
+    headers.set('Access-Control-Allow-Method', 'GET, POST');
+    headers.set('Access-Control-Allow-Origin', 'Origin, Content-Type');
+    return headers;
+
   }
 
 }

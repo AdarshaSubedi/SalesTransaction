@@ -10,9 +10,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
-  import { from } from 'rxjs';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
-import {LoginService} from './login.service';
+import { LoginService } from './login.service';
+import { from } from 'rxjs';
 
 const routes: Routes = [
   { path: '', component: LoginComponent }
@@ -33,7 +34,8 @@ const routes: Routes = [
     MatButtonModule,
     MatCardModule,
     MatToolbarModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule
   ],
   providers: [
     LoginService
@@ -47,7 +49,8 @@ const routes: Routes = [
     MatButtonModule,
     MatCardModule,
     MatToolbarModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule
   ]
 })
 export class LoginModule { }

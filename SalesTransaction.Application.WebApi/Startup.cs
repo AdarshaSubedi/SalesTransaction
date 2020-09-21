@@ -16,7 +16,6 @@ namespace SalesTransaction.Application.WebApi
 {
     public class Startup
     {
-        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -29,15 +28,17 @@ namespace SalesTransaction.Application.WebApi
         {
             services.AddMvcCore().AddNewtonsoftJson();
             services.AddControllers();
+
             services.AddCors(options =>
             {
-                options.AddPolicy(name: "MyAllowSpecificOrigins",
-                                  builder =>
-                                  {
-                                      builder.WithOrigins("http://localhost:4200")
-                                            .WithMethods("{POST}", "GET").AllowAnyHeader();
-                                  });
+                options.AddPolicy(
+                  name:"AllowOrigin",
+                  builder => builder.WithOrigins("http://localhost:4200")
+                  .AllowAnyMethod()
+                  .AllowAnyHeader()
+                  .AllowCredentials());
             });
+
             services.AddTransient<IAccountService, AccountService>();
         }
 
@@ -52,13 +53,13 @@ namespace SalesTransaction.Application.WebApi
 
             app.UseRouting();
 
-            app.UseCors(MyAllowSpecificOrigins);
+            app.UseCors("AllowOrigin");
 
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllers().RequireCors("AllowOrigin");
             });
         }
     }
