@@ -1,7 +1,7 @@
 <div class="login-container">
   <mat-card class="login-form">
     <mat-toolbar color="primary" class="login-toolbar">Login</mat-toolbar>
-    <form [formGroup]="loginForm" class="login-form" rowHeight="300px">
+    <form [formGroup]="loginForm" class="login-form" rowHeight="300px" (ngSubmit)="onLogin()">
       <mat-form-field>
         <input matInput formControlName="email" placeholder="Email">
         <mat-error *ngIf="loginForm.controls['email'].errors?.required">This field is mandatory</mat-error>
