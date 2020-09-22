@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './../shared/material.module';
 import { CommonModule } from '@angular/common';
 import { Component, NgModule } from '@angular/core';
@@ -16,7 +17,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
   providers: [
   ],
