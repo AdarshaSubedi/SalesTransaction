@@ -18,8 +18,6 @@ export class UserDetailService {
 
 
   getUserDetail(id){
-
-    return this.api.get('/userdetail', new HttpParams().set('json', JSON.stringify({userId : id})));
-    // JSON.stringify({userId : id})
+    return this.api.get('/account/userdetail', JSON.stringify({userId : id}));
   }
 }

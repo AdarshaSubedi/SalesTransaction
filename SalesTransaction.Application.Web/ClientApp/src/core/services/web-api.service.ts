@@ -16,8 +16,7 @@ export class WebApiService {
     return this.httpClient.post(this.apiUrl + url, body, {headers: this.getHeaderOptions()});
   }
   get(url: string, params?: any): Observable<any> {
-    console.log(url);
-    return this.httpClient.get(this.apiUrl + url, { headers: this.getHeaderOptions(), params: params});
+    return this.httpClient.get(this.apiUrl + url, { headers: this.getHeaderOptions(), params:{json:params} });
   }
 
   getHeaderOptions(): HttpHeaders {
