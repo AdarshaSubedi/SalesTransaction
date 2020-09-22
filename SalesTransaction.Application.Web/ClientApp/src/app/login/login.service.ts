@@ -1,30 +1,18 @@
-import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { WebApiService } from 'src/core/services/web-api.service';
+import { LoginComponent } from './login.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  apiUrl = 'https://localhost:44379/api';
-
-  constructor(private httpClient: HttpClient) {
+  constructor(private api: WebApiService) {
   }
 
-  getLogin(json): Observable<any>{
-    return this.httpClient.post<any>(this.apiUrl + '/account/login', json, {headers: this.getHeaderOptions()});
-  }
-
-  getHeaderOptions(): HttpHeaders {
-
-    const headers = new HttpHeaders();
-    headers.set('Content-Type', 'application/json');
-    headers.set('Access-Control-Allow-Origin', '*');
-    headers.set('Access-Control-Allow-Method', 'GET, POST');
-    headers.set('Access-Control-Allow-Origin', 'Origin, Content-Type');
-    return headers;
-
+  getLogin(json): Observable<any> {
+    return this.api.post('/account/login', json);
   }
 
 }

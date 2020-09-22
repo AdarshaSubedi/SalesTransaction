@@ -2,14 +2,13 @@ import { LoginService } from './login.service';
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
-
   loginForm: FormGroup;
   errorMessage: any;
   errorMessageType : any = {
@@ -33,19 +32,23 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.loginForm.valid){
       this.loginService.getLogin(loginData).subscribe((response:any) => {
         if (response){
-          this.openSnackBar('Logged in successfuly', 'close')
+          localStorage.setItem('userId', response.userId);
+          this.openSnackBar('Logged in successfuly', 'X');
           this.router.navigate(['/user-detail']);
         } else {
           this.errorMessage = this.errorMessageType.invalidForm;
         }
       });
-    } else {
-      this.errorMessage = this.errorMessageType.invalidForm;
     }
   }
 
   openSnackBar(message, action) {
-    this.snackbar.open(message, action, {duration: 3000});
+    this.snackbar.open(message, action, {
+      duration: 3000,
+      verticalPosition: 'top',
+      horizontalPosition: 'right',
+      panelClass: ['success']
+    });
   }
 
   ngAfterViewInit(): void {

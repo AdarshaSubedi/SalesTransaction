@@ -23,3 +23,10 @@ code {
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.success{
+  background-color:	#008000 !important;
+  color: #fff !important;
+  .mat-simple-snackbar-action {
+    color: white !important;
+  }
+}
