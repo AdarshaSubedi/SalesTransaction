@@ -97,6 +97,36 @@ namespace SalesTransaction.Application.Service.Account
             }
         }
 
+        public dynamic GetAllUserDetail()
+        {
+            using (var connection = _dataAccess.GetConnection())
+            {
+                var command = connection.CreateCommand();
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "SpAllUserDetailSel";
+                command.CommandTimeout = _commandTimeout;
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    try
+                    {
+                        if (reader.HasRows)
+                        {
+                            return _dataAccess.GetJson(reader);
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        throw e;
+                    }
+                }
+            }
+        }
+
 
     }
 }

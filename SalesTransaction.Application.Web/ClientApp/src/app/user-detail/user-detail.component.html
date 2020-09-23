@@ -1,4 +1,8 @@
 <div>
+  <button mat-raised-button (click)="getAllUsers()"> show all users</button>
+  <mat-error *ngIf="errorMessage != ''">
+    {{errorMessage}}
+  </mat-error>
   <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="userId">
       <mat-header-cell *matHeaderCellDef> User Id </mat-header-cell>

@@ -20,4 +20,8 @@ export class UserDetailService {
   getUserDetail(id){
     return this.api.get('/account/userdetail', JSON.stringify({userId : id}));
   }
+
+  getAllUserDetail(){
+    return this.api.get('/account/alluserdetail');
+  }
 }

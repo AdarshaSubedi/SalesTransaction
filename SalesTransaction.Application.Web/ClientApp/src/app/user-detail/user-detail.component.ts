@@ -11,6 +11,7 @@ import { MatTableDataSource } from '@angular/material/table';
 export class UserDetailComponent implements OnInit {
   displayedColumns: string[];
   dataSource: MvUserDetail[] = [];
+  errorMessage = '';
 
   constructor(private userDetail: UserDetailService) { }
 
@@ -26,10 +27,21 @@ export class UserDetailComponent implements OnInit {
       if (data) {
         this.dataSource = [data];
       } else {
-        console.log('no data');
+        this.dataSource = [];
+        this.errorMessage = 'No data';
       }
     });
   }
 
+  getAllUsers(){
+    this.userDetail.getAllUserDetail().subscribe((data: any) => {
+      if (data) {
+        this.dataSource = data.data;
+      } else {
+        this.dataSource = [];
+        this.errorMessage = 'No data';
+      }
+    });
+  }
 
 }
