@@ -19,9 +19,7 @@ namespace SalesTransaction.Application.DataAccess.Account
         {
             try
             {
-                //SqlCommand cmd = new SqlCommand("Select * from User as json path", _connection);
                 SetConnection();
-                //SqlDataReader rdr = cmd.ExecuteReader();
                 return _connection;
             }
             catch(Exception e)
