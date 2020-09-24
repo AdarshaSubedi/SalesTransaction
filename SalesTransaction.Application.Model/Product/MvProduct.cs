@@ -5,19 +5,21 @@ using System.Text;
 
 namespace SalesTransaction.Application.Model.Product
 {
-    class MvProduct
+    public class MvProduct
     {
         [Required]
-        public string ProductName { get; set; }
+        public string productName { get; set; }
         [Required]
-        public string Brand { get; set; }
+        public string brand { get; set; }
         [Required]
-        public string ProductIdentifier { get; set; }
+        public string productIdentifier { get; set; }
         [Required]
-        public int Rate { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public int rate { get; set; }
         [Required]
-        public int InsertPersonId { get; set; }
+        public DateTime startDate { get; set; }
+        [Required]
+        public DateTime endDate { get; set; }
+        [Required]
+        public int insertPersonId { get; set; }
     }
 }

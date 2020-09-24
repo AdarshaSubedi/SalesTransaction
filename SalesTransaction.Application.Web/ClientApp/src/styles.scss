@@ -30,3 +30,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     color: white !important;
   }
 }
+
+
+.mat-dialog-container{
+  padding: 10px !important;
+  padding-bottom: 20px !important;
+  overflow: hidden !important;
+}
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: white;
+}

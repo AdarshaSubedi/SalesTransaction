@@ -1,10 +1,12 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using SalesTransaction.Application.DataAccess.Account;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
+using SalesTransaction.Application.Model.Product;
 
 namespace SalesTransaction.Application.Service.Product
 {
@@ -27,6 +29,29 @@ namespace SalesTransaction.Application.Service.Product
             }
 
             _commandTimeout = Convert.ToInt32(connectionString["CommandTimeout"]);
+        }
+
+        public bool AddProduct(MvProduct product)
+        {
+            using (var connection = _dataAccess.GetConnection())
+            {
+                var jsonNew = JsonConvert.SerializeObject(product);
+                var command = connection.CreateCommand();
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "SpProductProductRateInsTsk";
+                command.Parameters.Add("@json", SqlDbType.NChar).Value = jsonNew;
+                command.CommandTimeout = _commandTimeout;
+
+                int rows = command.ExecuteNonQuery();
+
+                if (rows > 0)
+                {
+                    return true;
+                }
+                return false;
+
+
+            }
         }
 
         public dynamic GetAllProductDetail()
@@ -58,5 +83,8 @@ namespace SalesTransaction.Application.Service.Product
                 }
             }
         }
+
+
+
     }
 }

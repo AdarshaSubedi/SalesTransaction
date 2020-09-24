@@ -1,0 +1,30 @@
+<div class="form-container">
+  <mat-toolbar color="primary">Add Product</mat-toolbar>
+  <form class="product-form" [formGroup]="productForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Product Name</mat-label>
+      <input matInput formControlName="productName" placeholder="product name" required >
+      <mat-error *ngIf="productForm.controls['productName'].errors?.required">Invalid form value</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Brand</mat-label>
+      <input matInput formControlName="brand" placeholder="brand" required>
+      <mat-error *ngIf="productForm.controls['brand'].errors?.required">Invalid form value</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Identifier</mat-label>
+      <input matInput formControlName="productIdentifier" placeholder="Product unique identifier" required>
+      <mat-error *ngIf="productForm.controls['productIdentifier'].errors?.required">Invalid form value</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Rate</mat-label>
+      <input matInput formControlName="rate" placeholder="Price" required>
+      <mat-error *ngIf="productForm.controls['rate'].errors?.required">Invalid form value</mat-error>
+      <mat-error *ngIf="productForm.controls['rate'].errors?.pattern">Invalid form value</mat-error>
+    </mat-form-field>
+  </form>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="productForm.invalid">Save</button>
+    <button mat-raised-button color="warn" (click)="onClose()">Close</button>
+  </div>
+</div>
