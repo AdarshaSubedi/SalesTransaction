@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { NoopAnimationsModule, BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CustomerComponent } from './customer/customer.component';
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, pathMatch: 'full'},
   {
@@ -22,6 +21,10 @@ const appRoutes: Routes = [
   {
     path: 'product',
     loadChildren: () => import('./product/product.module').then(m => m.ProductModule)
+  },
+  {
+    path: 'customer',
+    loadChildren: () => import('./customer/customer.module').then(m => m.CustomerModule)
   }
 ];
 
@@ -29,8 +32,7 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     NavMenuComponent,
-    HomeComponent,
-    CustomerComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

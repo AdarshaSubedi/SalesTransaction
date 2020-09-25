@@ -1,13 +1,37 @@
-import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { MaterialModule } from './../shared/material.module';
+import { ProductFormComponent } from './../product/product-form/product-form.component';
+import { NgModule, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CustomerFormComponent } from './customer-form/customer-form.component';
+import { CustomerComponent } from './customer.component';
+import { Routes, RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CdkTableModule } from '@angular/cdk/table';
 
-
+const routes: Routes = [
+  { path:'', component: CustomerComponent}
+]
 
 @NgModule({
-  declarations: [CustomerFormComponent],
+  declarations: [
+    CustomerComponent,
+    CustomerFormComponent
+  ],
+  entryComponents:[CustomerFormComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule.forChild(routes),
+    MaterialModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    CdkTableModule
+  ],
+  exports: [
+    CustomerComponent
+  ],
+  providers: [
+    CustomerComponent
   ]
 })
 export class CustomerModule { }

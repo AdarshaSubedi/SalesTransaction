@@ -42,8 +42,8 @@ export class ProductComponent implements OnInit {
   }
 
   onAdd(){
-    this.selection.clear()
-    this.selectedProduct = <MvProductDetail>{}
+    this.selection.clear();
+    this.selectedProduct = <MvProductDetail>{};
     this.openDialog('Add');
   }
   onEdit(){
