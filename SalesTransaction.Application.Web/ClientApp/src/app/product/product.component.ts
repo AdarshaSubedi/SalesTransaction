@@ -1,3 +1,4 @@
+import { UtilityService } from './../../core/services/utility.service';
 import { ProductService } from './product.service';
 import { Component, OnInit } from '@angular/core';
 import { MvProductDetail, MvNewProduct } from './product.model';
@@ -19,8 +20,9 @@ export class ProductComponent implements OnInit {
   selectedProduct: MvNewProduct = <MvNewProduct>{};
   selection = new SelectionModel<MvProductDetail>(false, []);
 
-  constructor(private productDetail: ProductService,
-    private dialog: MatDialog) { }
+  constructor(private productService: ProductService,
+    private dialog: MatDialog,
+    private utilityService: UtilityService) { }
 
   ngOnInit(): void {
     this.displayedColumns = ['productId', 'productName', 'brand', 'productIdentifier', 'rate', 'startDate', 'endDate'];
@@ -29,10 +31,9 @@ export class ProductComponent implements OnInit {
 
 
   getAllProducts(){
-    this.productDetail.getAllProductDetail().subscribe((response: any) => {
+    this.productService.getAllProductDetail().subscribe((response: any) => {
       if (response && response.data) {
         this.dataSource = new MatTableDataSource<MvProductDetail>(response.data);
-        console.log(this.dataSource);
       } else {
         this.dataSource = new MatTableDataSource<MvProductDetail>();
         this.errorMessage = 'No data';
@@ -50,6 +51,10 @@ export class ProductComponent implements OnInit {
   }
 
   openDialog(action: string){
+    if (action === 'Edit' && !this.selection.hasValue()){
+      this.utilityService.openSnackBar('Please Select Row first', 'warn');
+      return;
+    }
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -59,15 +64,18 @@ export class ProductComponent implements OnInit {
     const dialogRef = this.dialog.open(ProductFormComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result){
-        this.selectedProduct = result;
-        console.log(this.selectedProduct);
+      if (result) {
         if (action === 'Edit'){
-          console.log('Edit feature pending')
-        } else {
-          this.productDetail.addProduct(result).subscribe(res => {
+          this.productService.updateProduct(result).subscribe(res => {
+            this.utilityService.openSnackBar('Product Edited', 'success');
             this.getAllProducts();
-          })
+          });
+
+        } else {
+          this.productService.addProduct(result).subscribe(res => {
+            this.utilityService.openSnackBar('Product added successfully', 'success');
+            this.getAllProducts();
+          });
         }
       }
 

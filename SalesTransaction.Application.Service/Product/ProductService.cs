@@ -54,6 +54,30 @@ namespace SalesTransaction.Application.Service.Product
             }
         }
 
+        public bool UpdateProduct(MvProductUpdate productUpdate)
+        {
+            using (var connection = _dataAccess.GetConnection())
+            {
+                var jsonNew = JsonConvert.SerializeObject(productUpdate);
+                var command = connection.CreateCommand();
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "SpProductProductRateUpdTsk";
+                command.Parameters.Add("@json", SqlDbType.NChar).Value = jsonNew;
+                command.CommandTimeout = _commandTimeout;
+
+                int rows = command.ExecuteNonQuery();
+
+                if (rows > 0)
+                {
+                    return true;
+                }
+                return false;
+
+
+            }
+        }
+
+
         public dynamic GetAllProductDetail()
         {
             using (var connection = _dataAccess.GetConnection())

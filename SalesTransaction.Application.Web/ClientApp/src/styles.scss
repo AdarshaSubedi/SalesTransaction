@@ -30,6 +30,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     color: white !important;
   }
 }
+.warn{
+  background-color:	#db3416 !important;
+  color: #fff !important;
+  .mat-simple-snackbar-action {
+    color: white !important;
+  }
+}
 
 
 .mat-dialog-container{

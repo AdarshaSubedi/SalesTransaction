@@ -37,6 +37,25 @@ namespace SalesTransaction.Application.WebApi.Areas.Product
         }
 
 
+        [HttpPost]
+        public IActionResult UpdateProduct([FromBody] MvProductUpdate product)
+        {
+            try
+            {
+                var updated = _productService.UpdateProduct(product);
+                if (!updated)
+                {
+                    return BadRequest();
+                }
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+
         [HttpGet]
         public IActionResult AllProductDetail()
         {

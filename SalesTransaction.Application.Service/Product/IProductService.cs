@@ -8,6 +8,7 @@ namespace SalesTransaction.Application.Service.Product
     public interface IProductService
     {
         bool AddProduct(MvProduct product);
+        bool UpdateProduct(MvProductUpdate product);
         dynamic GetAllProductDetail();
     }
 }

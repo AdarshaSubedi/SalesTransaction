@@ -1,3 +1,4 @@
+import { UtilityService } from './../../../core/services/utility.service';
 import { MvNewProduct } from './../product.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AfterViewInit, Component, inject, OnInit } from '@angular/core';
@@ -19,7 +20,8 @@ export class ProductFormComponent implements OnInit, AfterViewInit {
 
   constructor(private fb: FormBuilder,
     private dialogRef: MatDialogRef<ProductFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private utilityService: UtilityService) {
       this.action = data.action;
       this.selectedProduct = data.data || {};
     }
@@ -30,8 +32,8 @@ export class ProductFormComponent implements OnInit, AfterViewInit {
       brand: ['', Validators.required],
       productIdentifier: ['', Validators.required],
       rate: ['', [Validators.required, Validators.pattern('[0-9]*')]],
-      startDate: ['', Validators.required],
-      endDate: ['', Validators.required],
+      startDate: ['', [Validators.required]],
+      endDate: ['', [Validators.required]],
       insertPersonId: [ this.userId ]
     });
   }
@@ -41,6 +43,7 @@ export class ProductFormComponent implements OnInit, AfterViewInit {
   }
   onClose(){
     this.dialogRef.close();
+    this.utilityService.openSnackBar('Operation Cancelled', 'warn');
   }
 
   ngAfterViewInit() {
