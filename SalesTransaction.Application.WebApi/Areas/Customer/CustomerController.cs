@@ -3,27 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using SalesTransaction.Application.Model.Product;
-using SalesTransaction.Application.Service.Product;
+using SalesTransaction.Application.Model.Customer;
+using SalesTransaction.Application.Service.Customer;
 using SalesTransaction.Application.WebApi.Areas.Base;
 
-namespace SalesTransaction.Application.WebApi.Areas.Product
+namespace SalesTransaction.Application.WebApi.Areas.Customer
 {
-    public class ProductController : BaseController
+    public class CustomerController : BaseController
     {
-        private IProductService _productService;
-        public ProductController(IProductService productService)
+        private ICustomerService _customerService;
+        public CustomerController(ICustomerService customerService)
         {
-            _productService = productService;
+            _customerService = customerService;
         }
 
 
         [HttpPost]
-        public IActionResult AddProduct([FromBody] MvProduct product)
+        public IActionResult AddCustomer([FromBody] MvCustomer customer)
         {
             try
             {
-                var added = _productService.AddProduct(product);
+                var added = _customerService.AddCustomer(customer);
                 if (!added)
                 {
                     return BadRequest();
@@ -38,11 +38,11 @@ namespace SalesTransaction.Application.WebApi.Areas.Product
 
 
         [HttpPost]
-        public IActionResult UpdateProduct([FromBody] MvProductUpdate product)
+        public IActionResult UpdateCustomer([FromBody] MvCustomerUpdate customer)
         {
             try
             {
-                var updated = _productService.UpdateProduct(product);
+                var updated = _customerService.UpdateCustomer(customer);
                 if (!updated)
                 {
                     return BadRequest();
@@ -57,11 +57,11 @@ namespace SalesTransaction.Application.WebApi.Areas.Product
 
 
         [HttpGet]
-        public IActionResult AllProductDetail()
+        public IActionResult AllCustomerDetail()
         {
             try
             {
-                dynamic jsonString = _productService.GetAllProductDetail();
+                dynamic jsonString = _customerService.GetAllCustomerDetail();
                 return Ok(jsonString);
             }
             catch (Exception e)
@@ -69,7 +69,5 @@ namespace SalesTransaction.Application.WebApi.Areas.Product
                 throw e;
             }
         }
-
-
     }
 }
