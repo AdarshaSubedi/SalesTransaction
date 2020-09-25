@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from '../shared/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CdkTableModule } from '@angular/cdk/table';
 
 const routes: Routes = [
   { path: '', component: ProductComponent }
@@ -22,7 +23,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     MaterialModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CdkTableModule
   ],
   exports: [
     ProductComponent

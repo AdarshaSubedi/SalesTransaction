@@ -1,26 +1,36 @@
 <div class="form-container">
-  <mat-toolbar color="primary">Add Product</mat-toolbar>
+  <mat-toolbar color="primary">{{action}} Product</mat-toolbar>
   <form class="product-form" [formGroup]="productForm">
     <mat-form-field appearance="fill">
       <mat-label>Product Name</mat-label>
-      <input matInput formControlName="productName" placeholder="product name" required >
+      <input matInput formControlName="productName" [(ngModel)]="selectedProduct.productName" placeholder="product name" required >
       <mat-error *ngIf="productForm.controls['productName'].errors?.required">Invalid form value</mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Brand</mat-label>
-      <input matInput formControlName="brand" placeholder="brand" required>
+      <input matInput formControlName="brand" [(ngModel)]="selectedProduct.brand" placeholder="brand" required>
       <mat-error *ngIf="productForm.controls['brand'].errors?.required">Invalid form value</mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Identifier</mat-label>
-      <input matInput formControlName="productIdentifier" placeholder="Product unique identifier" required>
+      <input matInput formControlName="productIdentifier" [(ngModel)]="selectedProduct.productIdentifier" placeholder="Product unique identifier" required>
       <mat-error *ngIf="productForm.controls['productIdentifier'].errors?.required">Invalid form value</mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Rate</mat-label>
-      <input matInput formControlName="rate" placeholder="Price" required>
+      <input matInput formControlName="rate" [(ngModel)]="selectedProduct.rate" placeholder="Price" required>
       <mat-error *ngIf="productForm.controls['rate'].errors?.required">Invalid form value</mat-error>
       <mat-error *ngIf="productForm.controls['rate'].errors?.pattern">Invalid form value</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Start Date</mat-label>
+      <input matInput formControlName="startDate" [(ngModel)]="selectedProduct.startDate" placeholder="mm/dd/yyyy" required>
+      <mat-error *ngIf="productForm.controls['startDate'].errors?.required">Invalid form value</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>End Date</mat-label>
+      <input matInput formControlName="endDate" [(ngModel)]="selectedProduct.endDate" placeholder="mm/dd/yyyy" required>
+      <mat-error *ngIf="productForm.controls['endDate'].errors?.required">Invalid form value</mat-error>
     </mat-form-field>
   </form>
   <div mat-dialog-actions>

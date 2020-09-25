@@ -1,10 +1,10 @@
-<div>
+<div class="product-table">
   <button mat-raised-button (click)="onAdd()">Add</button>
   <button mat-raised-button (click)="onEdit()">Edit</button>
   <mat-error *ngIf="errorMessage != ''">
     {{errorMessage}}
   </mat-error>
-  <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="dataSource">
     <ng-container matColumnDef="productId">
       <mat-header-cell *matHeaderCellDef> Product Id </mat-header-cell>
       <mat-cell *matCellDef="let ProductDetail"> {{ProductDetail.productId}} </mat-cell>
@@ -30,7 +30,21 @@
       <mat-cell *matCellDef="let ProductDetail"> {{ProductDetail.rate}} </mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="startDate">
+      <mat-header-cell *matHeaderCellDef> Start Date </mat-header-cell>
+      <mat-cell *matCellDef="let ProductDetail"> {{ProductDetail.startDate}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="endDate">
+      <mat-header-cell *matHeaderCellDef> End Date </mat-header-cell>
+      <mat-cell *matCellDef="let ProductDetail"> {{ProductDetail.endDate}} </mat-cell>
+    </ng-container>
+
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"
+      (click)="selectRow($event, row)"
+      [ngClass]="{hovered: row.hovered, highlighted: selection.isSelected(row)}"
+      (mouseover)="row.hovered = true" (mouseout)="row.hovered = false">
+    </mat-row>
   </mat-table>
 </div>
