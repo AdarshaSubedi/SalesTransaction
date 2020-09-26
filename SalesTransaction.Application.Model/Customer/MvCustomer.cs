@@ -9,7 +9,6 @@ namespace SalesTransaction.Application.Model.Customer
     {
         [Required]
         public string firstName { get; set; }
-        [Required]
         public string middleName { get; set; }
         [Required]
         public string lastName { get; set; }
@@ -27,7 +26,6 @@ namespace SalesTransaction.Application.Model.Customer
         public int customerId  { get; set; }
         [Required]
         public string firstName { get; set; }
-        [Required]
         public string middleName { get; set; }
         [Required]
         public string lastName { get; set; }
