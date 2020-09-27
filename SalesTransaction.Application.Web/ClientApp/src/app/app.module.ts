@@ -25,6 +25,10 @@ const appRoutes: Routes = [
   {
     path: 'customer',
     loadChildren: () => import('./customer/customer.module').then(m => m.CustomerModule)
+  },
+  {
+    path: 'sales-transaction',
+    loadChildren: () => import('./sales-transaction/sales-transaction.module').then(m => m.SalesTransactionModule)
   }
 ];
 
