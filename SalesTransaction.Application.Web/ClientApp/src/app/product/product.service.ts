@@ -7,17 +7,17 @@ import { WebApiService } from 'src/core/services/web-api.service';
 })
 export class ProductService {
 
-  constructor(private api:WebApiService) { }
+  constructor(private api: WebApiService) { }
 
 
-  getAllProductDetail(){
+  getAllProductDetail() {
     return this.api.get('/product/allproductdetail');
   }
 
-  addProduct(json): Observable<any>{
+  addProduct(json): Observable<any> {
     return this.api.post('/product/addproduct', json);
   }
-  updateProduct(json): Observable<any>{
+  updateProduct(json): Observable<any> {
     return this.api.post('/product/updateproduct', json);
   }
 

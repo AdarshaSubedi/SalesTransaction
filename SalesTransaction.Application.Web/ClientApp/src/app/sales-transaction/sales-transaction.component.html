@@ -1,2 +1,45 @@
-<app-sales-transaction-form></app-sales-transaction-form>
-<p>sales-transaction works!</p>
+<div class="sales-transaction-table">
+  <button mat-raised-button (click)="onAdd()">Add</button>
+  <button mat-raised-button (click)="onEdit()">Edit</button>
+  <mat-error *ngIf="errorMessage != ''">
+    {{errorMessage}}
+  </mat-error>
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="dataSource">
+    <ng-container matColumnDef="salesTransactionId">
+      <mat-header-cell *matHeaderCellDef> Sales Id </mat-header-cell>
+      <mat-cell *matCellDef="let SalesTransactionDetail"> {{SalesTransactionDetail.productId}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="customerName">
+      <mat-header-cell *matHeaderCellDef> Customer Name </mat-header-cell>
+      <mat-cell *matCellDef="let SalesTransactionDetail"> {{SalesTransactionDetail.customerName}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="productName">
+      <mat-header-cell *matHeaderCellDef> Product Name </mat-header-cell>
+      <mat-cell *matCellDef="let SalesTransactionDetail"> {{SalesTransactionDetail.productName}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="quantity">
+      <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
+      <mat-cell *matCellDef="let SalesTransactionDetail"> {{SalesTransactionDetail.quantity}}  </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="rate">
+      <mat-header-cell *matHeaderCellDef> Rate </mat-header-cell>
+      <mat-cell *matCellDef="let SalesTransactionDetail"> {{SalesTransactionDetail.rate}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="totalAmount">
+      <mat-header-cell *matHeaderCellDef> Total Amount </mat-header-cell>
+      <mat-cell *matCellDef="let SalesTransactionDetailDetail"> {{SalesTransactionDetailDetail.totalAmount}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"
+      (click)="selectRow($event, row)"
+      [ngClass]="{hovered: row.hovered, highlighted: selection.isSelected(row)}"
+      (mouseover)="row.hovered = true" (mouseout)="row.hovered = false">
+    </mat-row>
+  </mat-table>
+</div>

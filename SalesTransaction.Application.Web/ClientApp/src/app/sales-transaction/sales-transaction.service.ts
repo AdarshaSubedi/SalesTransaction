@@ -10,7 +10,7 @@ export class SalesTransactionService {
   constructor(private api: WebApiService) { }
 
   getAllSalesTransactionDetail(){
-    return this.api.get('/product/allproductdetail');
+    return this.api.get('/salestransaction/allsalestransactiondetail');
   }
 
   addSalesTransaction(json): Observable<any> {
