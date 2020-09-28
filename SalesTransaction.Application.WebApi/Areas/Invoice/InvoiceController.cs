@@ -1,0 +1,35 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using SalesTransaction.Application.Service.Invoice;
+using SalesTransaction.Application.WebApi.Areas.Base;
+
+namespace SalesTransaction.Application.WebApi.Areas.Invoice
+{
+    public class InvoiceController : BaseController
+    {
+        private IInvoiceService _invoiceService;
+
+        public InvoiceController(IInvoiceService invoiceService)
+        {
+            _invoiceService = invoiceService;
+        }
+
+        [HttpGet]
+        public IActionResult AllInvoiceDetail()
+        {
+            try
+            {
+                dynamic jsonString = _invoiceService.GetAllInvoiceDetail();
+                return Ok(jsonString);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+    }
+}
