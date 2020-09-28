@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { NoopAnimationsModule, BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, pathMatch: 'full'},
   {
@@ -29,6 +30,10 @@ const appRoutes: Routes = [
   {
     path: 'sales-transaction',
     loadChildren: () => import('./sales-transaction/sales-transaction.module').then(m => m.SalesTransactionModule)
+  },
+  {
+    path: 'invoice',
+    loadChildren: () => import('./invoice/invoice.module').then(m => m.InvoiceModule)
   }
 ];
 
