@@ -20,7 +20,7 @@ namespace SalesTransaction.Application.Model.SalesTransaction
     public class MvSalesTransactionUpdate
     {
         [Required]
-        public int salesTranasactionId { get; set; }
+        public int salesTransactionId { get; set; }
         [Required]
         public int customerId { get; set; }
         [Required]

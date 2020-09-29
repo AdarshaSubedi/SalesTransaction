@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using SalesTransaction.Application.DataAccess.Account;
+using SalesTransaction.Application.Model.Invoice;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -57,5 +59,40 @@ namespace SalesTransaction.Application.Service.Invoice
                 }
             }
         }
+
+        public dynamic GetInvoiceDescription(String json)
+        {
+            using (var connection = _dataAccess.GetConnection())
+            {
+                var command = connection.CreateCommand();
+                command.CommandType = CommandType.StoredProcedure;
+                //dynamic jsonNew = JsonConvert.DeserializeObject(json);
+                command.CommandText = "SpSalesTransactionSel";
+                command.Parameters.AddWithValue("@json", SqlDbType.NChar).Value = json;
+                command.CommandTimeout = _commandTimeout;
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    try
+                    {
+                        if (reader.HasRows)
+                        {
+                            return _dataAccess.GetJson(reader);
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        throw e;
+                    }
+                }
+            }
+        }
+
+
+
     }
 }

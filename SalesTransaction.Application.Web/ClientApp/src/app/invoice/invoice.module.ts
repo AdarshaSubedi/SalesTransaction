@@ -5,13 +5,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from '../shared/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CdkTableModule } from '@angular/cdk/table';
+import { InvoiceDetailComponent } from './invoice-detail/invoice-detail.component';
 
 const routes: Routes = [
   { path: '', component: InvoiceComponent }
 ];
 
 @NgModule({
-  declarations: [InvoiceComponent],
+  declarations: [InvoiceComponent, InvoiceDetailComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

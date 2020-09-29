@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SalesTransaction.Application.Model.Invoice
 {
-    class MvInvoice
+    public class MvInvoice
     {
         [Required]
         public int customerId { get; set; }
@@ -18,4 +18,16 @@ namespace SalesTransaction.Application.Model.Invoice
         [Required]
         public int insertPersonId { get; set; }
     }
+
+    public class MvInvoiceDescription
+    {
+        [Required]
+        public int invoiceId { get; set; }
+        public int customerId { get; set; }
+        public string customerName { get; set; }
+        public int amount { get; set; }
+        public int amountAfterDiscount { get; set; }
+        public int insertPersonId { get; set; }
+    }
+
 }
