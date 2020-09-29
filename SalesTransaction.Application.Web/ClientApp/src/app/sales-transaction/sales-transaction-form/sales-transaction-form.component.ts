@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UtilityService } from 'src/core/services/utility.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { concat } from 'rxjs';
 
 @Component({
   selector: 'app-sales-transaction-form',
@@ -66,7 +67,7 @@ export class SalesTransactionFormComponent implements OnInit, AfterViewInit {
           if (customer.customerId){
             this.customerList.push({
               id: customer.customerId,
-              name: customer.firstName
+              name: `${customer.lastName}, ${customer.firstName} ${customer.middleName}`
             });
           }
         });
