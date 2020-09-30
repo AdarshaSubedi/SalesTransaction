@@ -9,6 +9,10 @@ export class InvoiceService {
 
   constructor(private api: WebApiService) { }
 
+  addInvoice(json: any): Observable<any> {
+    return this.api.post('/invoice/addinvoice', json);
+  }
+
   getAllInvoiceDetail(){
     return this.api.get('/invoice/allinvoicedetail');
   }
@@ -16,5 +20,7 @@ export class InvoiceService {
   getInvoiceDescription(id): Observable<any>{
     return this.api.get('/invoice/invoicedescription', JSON.stringify({invoiceId : id}));
   }
+
+
 
 }

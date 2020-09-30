@@ -18,6 +18,25 @@ namespace SalesTransaction.Application.WebApi.Areas.Invoice
             _invoiceService = invoiceService;
         }
 
+
+        [HttpPost]
+        public IActionResult AddInvoice([FromBody] IEnumerable<MvInvoice> sales)
+        {
+            try
+            {
+                var added = _invoiceService.AddInvoice(sales);
+                if (!added)
+                {
+                    return BadRequest();
+                }
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         [HttpGet]
         public IActionResult AllInvoiceDetail()
         {

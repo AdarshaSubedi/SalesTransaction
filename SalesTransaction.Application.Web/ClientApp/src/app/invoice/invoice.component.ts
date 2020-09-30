@@ -27,7 +27,7 @@ export class InvoiceComponent implements OnInit {
     private utilityService: UtilityService) { }
 
   ngOnInit(): void {
-    this.displayedColumns = ['invoiceId', 'customerName', 'amount', 'amountAfterDiscount']
+    this.displayedColumns = ['invoiceId', 'customerName', 'amount', 'amountAfterDiscount', 'insertDate']
     this.getAllInvoice();
   }
 

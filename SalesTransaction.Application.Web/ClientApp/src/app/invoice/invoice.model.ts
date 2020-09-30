@@ -4,6 +4,7 @@ export interface MvInvoiceDetail {
   customerName: string;
   amount: number;
   amountAfterDiscount: number;
+  insertDate: Date;
 }
 
 export interface MvInvoiceDescription{

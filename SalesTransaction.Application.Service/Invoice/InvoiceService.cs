@@ -30,6 +30,29 @@ namespace SalesTransaction.Application.Service.Invoice
             _commandTimeout = Convert.ToInt32(connectionString["CommandTimeout"]);
         }
 
+
+        public bool AddInvoice(IEnumerable<MvInvoice> sales)
+        {
+            using (var connection = _dataAccess.GetConnection())
+            {
+                var jsonNew = JsonConvert.SerializeObject(sales);
+                var command = connection.CreateCommand();
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "SpNewInvoiceSalesTransactionTsk";
+                command.Parameters.Add("@json", SqlDbType.NChar).Value = jsonNew;
+                command.CommandTimeout = _commandTimeout;
+
+                int rows = command.ExecuteNonQuery();
+
+                if (rows > 0)
+                {
+                    return true;
+                }
+                return false;
+
+            }
+        }
+
         public dynamic GetAllInvoiceDetail()
         {
             using (var connection = _dataAccess.GetConnection())

@@ -1,4 +1,4 @@
-<div class="product-table">
+<div class="invoice-table">
   <button mat-raised-button (click)="onGenerate()">Generate Invoice</button>
   <mat-error *ngIf="errorMessage != ''">
     {{errorMessage}}
@@ -22,6 +22,11 @@
     <ng-container matColumnDef="amountAfterDiscount">
       <mat-header-cell *matHeaderCellDef> After Discount </mat-header-cell>
       <mat-cell *matCellDef="let InvoiceDetail"> {{InvoiceDetail.amountAfterDiscount}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="insertDate">
+      <mat-header-cell *matHeaderCellDef> Insert Date</mat-header-cell>
+      <mat-cell *matCellDef="let InvoiceDetail"> {{InvoiceDetail.insertDate}} </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

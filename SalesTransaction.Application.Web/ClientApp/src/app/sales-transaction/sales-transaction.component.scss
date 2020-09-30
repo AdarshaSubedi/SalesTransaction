@@ -17,3 +17,8 @@ button{
 .mat-row.highlighted {
 background: #778fee
 }
+
+th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+  padding: 0;
+  border-bottom: none;
+}

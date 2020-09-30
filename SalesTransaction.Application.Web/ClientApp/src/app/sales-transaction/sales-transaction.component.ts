@@ -1,3 +1,4 @@
+import { InvoiceService } from './../invoice/invoice.service';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -19,13 +20,15 @@ export class SalesTransactionComponent implements OnInit {
   errorMessage = '';
   selectedSalesTransaction: MvNewSalesTransaction = <MvNewSalesTransaction>{};
   selection = new SelectionModel<MvSalesTransactionDetail>(false, []);
+  selectionCheckBox = new SelectionModel<MvSalesTransactionDetail>(true, []);
 
   constructor(private salesTransactionService: SalesTransactionService,
     private dialog: MatDialog,
-    private utilityService: UtilityService) { }
+    private utilityService: UtilityService,
+    private invoiceService: InvoiceService) { }
 
   ngOnInit(): void {
-    this.displayedColumns = ['salesTransactionId', 'customerName', 'productName', 'quantity', 'rate', 'totalAmount'];
+    this.displayedColumns = ['select', 'salesTransactionId', 'customerName', 'productName', 'quantity', 'rate', 'totalAmount', 'invoiceId'];
     this.getAllSalesTransaction();
   }
 
@@ -86,7 +89,65 @@ export class SalesTransactionComponent implements OnInit {
   selectRow(e: any, row: MvSalesTransactionDetail) {
     this.selectedSalesTransaction = {...row};
     this.selection.toggle(row);
+    this.selectionCheckBox.toggle(row);
   }
 
+
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selectionCheckBox.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+        this.selection.clear() :
+        this.dataSource.data.forEach(row => this.selectionCheckBox.select(row) );
+  }
+
+  /** The label for the checkbox on the passed row */
+  checkboxLabel(row?: MvSalesTransactionDetail): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.salesTransactionId + 1}`;
+  }
+
+  generateInvoice(){
+    if (!this.selectionCheckBox.hasValue()){
+      this.utilityService.openSnackBar('Please select at least one sale to generate Invoice', 'warn');
+      return;
+    } else {
+      if(this.hasInvoice(this.selectionCheckBox.selected)){
+        this.utilityService.openSnackBar('Please select row which does not have Invoice', 'warn');
+        return;
+      } else if (!this.sameCustomer(this.selectionCheckBox.selected)){
+        this.utilityService.openSnackBar('Please select sales of same customer', 'warn');
+      } else {
+        this.invoiceService.addInvoice(this.selectionCheckBox.selected).subscribe(response =>{
+          this.getAllSalesTransaction();
+          this.utilityService.openSnackBar('Invoice Generated', 'success');
+        });
+      }
+    }
+  }
+
+  hasInvoice(array): boolean{
+    let invoice = false;
+    array.forEach(object => {
+      if(object.invoiceId){
+        invoice = true;
+        return;
+      }
+    });
+    return invoice;
+  }
+
+  sameCustomer(array):boolean{
+    const customer = array[0].customerId;
+    return array.every(obj => obj.customerId === customer );
+  }
 
 }

@@ -5,6 +5,7 @@ export interface MvSalesTransactionDetail {
   productId: number;
   producctName: string;
   quantity: number;
+  invoiceId: number;
 }
 export interface MvNewSalesTransaction{
   customerId: number;
