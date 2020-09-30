@@ -7,6 +7,7 @@ import { UtilityService } from 'src/core/services/utility.service';
 import { SalesTransactionFormComponent } from './sales-transaction-form/sales-transaction-form.component';
 import { MvNewSalesTransaction, MvSalesTransactionDetail } from './sales-transaction.model';
 import { SalesTransactionService } from './sales-transaction.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sales-transaction',
@@ -25,7 +26,8 @@ export class SalesTransactionComponent implements OnInit {
   constructor(private salesTransactionService: SalesTransactionService,
     private dialog: MatDialog,
     private utilityService: UtilityService,
-    private invoiceService: InvoiceService) { }
+    private invoiceService: InvoiceService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.displayedColumns = ['select', 'salesTransactionId', 'customerName', 'productName', 'quantity', 'rate', 'totalAmount', 'invoiceId'];
@@ -55,6 +57,9 @@ export class SalesTransactionComponent implements OnInit {
   openDialog(action: string){
     if (action === 'Edit' && !this.selection.hasValue()){
       this.utilityService.openSnackBar('Please Select Row first', 'warn');
+      return;
+    }else if(this.hasInvoice(this.selection.selected)){
+      this.utilityService.openSnackBar('Cannot edit transaction whose invoice is already created', 'warn');
       return;
     }
 
@@ -127,6 +132,7 @@ export class SalesTransactionComponent implements OnInit {
         this.utilityService.openSnackBar('Please select sales of same customer', 'warn');
       } else {
         this.invoiceService.addInvoice(this.selectionCheckBox.selected).subscribe(response =>{
+          this.router.navigate(['/invoice']);
           this.getAllSalesTransaction();
           this.utilityService.openSnackBar('Invoice Generated', 'success');
         });
