@@ -58,7 +58,7 @@ export class SalesTransactionComponent implements OnInit {
     if (action === 'Edit' && !this.selection.hasValue()){
       this.utilityService.openSnackBar('Please Select Row first', 'warn');
       return;
-    }else if(this.hasInvoice(this.selection.selected)){
+    } else if (this.hasInvoice(this.selection.selected)) {
       this.utilityService.openSnackBar('Cannot edit transaction whose invoice is already created', 'warn');
       return;
     }
@@ -108,7 +108,7 @@ export class SalesTransactionComponent implements OnInit {
   /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
     this.isAllSelected() ?
-        this.selection.clear() :
+        this.selectionCheckBox.clear() :
         this.dataSource.data.forEach(row => this.selectionCheckBox.select(row) );
   }
 
@@ -130,6 +130,7 @@ export class SalesTransactionComponent implements OnInit {
         return;
       } else if (!this.sameCustomer(this.selectionCheckBox.selected)){
         this.utilityService.openSnackBar('Please select sales of same customer', 'warn');
+        return;
       } else {
         this.invoiceService.addInvoice(this.selectionCheckBox.selected).subscribe(response =>{
           this.router.navigate(['/invoice']);
